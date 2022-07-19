@@ -13,19 +13,24 @@ for (let i = 0; i < 5; i++) {
 
 let selectedId = "monochrome";
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   let rawColor = pickedColor.value.slice(1);
+
   e.preventDefault();
-  fetch(
-    `https://www.thecolorapi.com/scheme?hex=${rawColor}&mode=${selectedId}&count=5`
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      for (let i = 0; i < colorArr.length; i++) {
-        colorArr[i].style.backgroundColor = data.colors[i].hex.value;
-        colorTextArr[i].innerText = data.colors[i].hex.value;
-      }
-    });
+
+  try {
+    const response = await fetch(
+      `https://www.thecolorapi.com/scheme?hex=${rawColor}&mode=${selectedId}&count=5`
+    );
+    const data = await response.json();
+
+    for (let i = 0; i < colorArr.length; i++) {
+      colorArr[i].style.backgroundColor = data.colors[i].hex.value;
+      colorTextArr[i].innerText = data.colors[i].hex.value;
+    }
+  } catch (error) {
+    console.log(error, "Color Api Not Reachable...");
+  }
 });
 
 selectedColor.addEventListener("change", () => {
