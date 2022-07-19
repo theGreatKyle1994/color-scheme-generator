@@ -6,13 +6,16 @@ const outputText = document.querySelector("#colorOutputText");
 const colorArr = [];
 const colorTextArr = [];
 
+//Generate color containers on load to array
 for (let i = 0; i < 5; i++) {
   colorArr.push(document.querySelector(`.c${i}`));
   colorTextArr.push(document.querySelector(`.c${i}text`));
 }
 
+//Set default color scheme
 let selectedId = "monochrome";
 
+//Make api calls and generate the color pallete
 form.addEventListener("submit", async (e) => {
   let rawColor = pickedColor.value.slice(1);
 
@@ -33,6 +36,11 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
+//Update selector selection
 selectedColor.addEventListener("change", () => {
   selectedId = selectedColor.options[selectedColor.selectedIndex].value;
+});
+
+outputText.addEventListener("click", (e) => {
+  navigator.clipboard.writeText(e.target.innerText);
 });

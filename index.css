@@ -1,18 +1,19 @@
 * {
   box-sizing: border-box;
+  user-select: none;
 }
 
 html,
 body {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
   height: 100vh;
   width: 100%;
-  font-size: 1em;
+  font-size: 2em;
 }
 
 body {
@@ -23,19 +24,18 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 800px;
-  width: 40%;
+  height: 80%;
+  width: 50%;
   background-color: white;
   box-shadow: 5px 5px 20px gray;
   border-radius: 25px;
-  margin-top: 100px;
   padding: 10px 0;
   border: 1px solid black;
 }
 
 #form {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
 }
 
@@ -44,13 +44,26 @@ body {
 #form button {
   margin: 0 10px;
   margin-bottom: 30px;
-  height: 40px;
+  height: 130px;
   width: 30%;
   font-weight: 600;
   background-color: #e5e5e6;
   border-radius: 10px;
   border: 1px solid gray;
   cursor: pointer;
+}
+
+#colorPallet:hover,
+#colorPallet:active,
+#colorPick:hover,
+#colorPick:active,
+#form button:hover,
+#form button:active {
+  border: 2px solid black;
+}
+
+#form button:active {
+  transform: scale(0.95);
 }
 
 #colorOutput {
@@ -65,7 +78,7 @@ body {
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 60px;
+  height: 200px;
   font-weight: 600;
 }
 
@@ -78,9 +91,18 @@ body {
   height: 100%;
 }
 
-@media (max-width: 1250px) {
+.c0text:active,
+.c1text:active,
+.c2text:active,
+.c3text:active,
+.c4text:active {
+  color: grey;
+  transform: scale(0.9);
+}
+
+@media (max-width: 1000px) {
   body {
-    font-size: 2em;
+    font-size: 1em;
   }
   #container {
     width: 90%;
@@ -94,10 +116,27 @@ body {
   #colorPick,
   #form button {
     width: 90%;
-    height: 100px;
+    height: 80px;
     text-align: center;
   }
   #colorOutputText {
     height: 200px;
+  }
+}
+
+@media (max-height: 1000px) {
+  body {
+    font-size: 0.5em;
+  }
+  #container {
+    width: 80%;
+  }
+  #colorPallet,
+  #colorPick,
+  #form button {
+    height: 40px;
+  }
+  #colorOutputText {
+    height: 70px;
   }
 }
